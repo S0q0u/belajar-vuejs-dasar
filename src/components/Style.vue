@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 const array = ['red', 'bold'];
 
+// variabel reaktif yang awalnya bernilai false
 const red = ref(false);
 const bold = ref(false);
 
@@ -25,6 +26,7 @@ const style2 = {
 </script>
 
 <template>
+  <!-- Menggunakan Object untuk Class Binding. Jika red bernilai true, class red akan ditambahkan. Jika bold bernilai true, class bold akan ditambahkan. -->
   <h1 :class="{ red: red, bold: bold }">Style</h1>
   <!-- <h1 :class="['red', 'bold']">Style</h1> -->
   <h1 :class="array">Style</h1>
