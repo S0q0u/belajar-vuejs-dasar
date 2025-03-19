@@ -17,6 +17,7 @@ export default defineConfig({
         contact: 'contact.html',
         product: 'product.html',
         note: 'note.html',
+        todolist2: 'todolist2.html',
       },
     },
   },
