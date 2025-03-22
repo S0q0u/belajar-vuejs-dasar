@@ -6,7 +6,6 @@ import { nextTick, ref } from 'vue';
 console.info('Load Component');
 let counter = ref({
   count: 0,
-  name: 'Lin',
 });
 
 // function Increment() {
@@ -42,7 +41,7 @@ async function Increment() {
 <template>
   <div>
     <!-- <h1 id="count">Counter: {{ count }}</h1> -->
-    <h1 id="count">Counter {{ counter.name }}: {{ counter.count }}</h1>
+    <h1 id="count">Counter: {{ counter.count }}</h1>
     <button v-on:click="Increment()">Increment</button>
   </div>
 </template>
