@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, useTemplateRef } from 'vue';
+import { computed, reactive, ref, useTemplateRef } from 'vue';
 
 const Todos = reactive([
   {
@@ -21,6 +21,7 @@ const Todos = reactive([
 
 const newTodo = ref('');
 const input = useTemplateRef('input');
+const search = ref('');
 
 function addTodo() {
   Todos.push({
@@ -54,6 +55,19 @@ function saveEdit(todo) {
 function cancelEdit() {
   editedTodo.value = null; // Batalkan edit
 }
+
+const filteredTodos = computed(() => {
+  // Tampilkan semuanya saat search input kosong
+  if (!search.value.trim()) {
+    return Todos;
+  } 
+  // Tampilkan hasil search
+  else {
+    return Todos.filter((todo) => {
+      return todo.text.toLowerCase().includes(search.value.toLowerCase());
+    });
+  }
+});
 </script>
 
 <template>
@@ -67,9 +81,16 @@ function cancelEdit() {
     v-model="newTodo"
   />
   <button @click="addTodo">Add</button>
+  <input
+    type="text"
+    name="search"
+    id="search"
+    v-model="search"
+    placeholder="Search here..."
+  />
 
   <!-- untuk setiap todo dan indexnya dalam array -->
-  <div v-for="(todo, index) in Todos" :key="todo.id">
+  <div v-for="(todo, index) in filteredTodos" :key="todo.id">
     <ul>
       <!-- binding class completed kalau completed bernilai true -->
       <li :class="{ completed: todo.completed }">
