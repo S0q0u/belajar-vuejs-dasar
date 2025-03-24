@@ -1,5 +1,7 @@
 <script setup>
 import { reactive } from 'vue';
+import ContactForm from './ContactForm.vue';
+import ContactList from './ContactList.vue';
 
 const contact = reactive({
   name: '',
@@ -13,54 +15,18 @@ const contact = reactive({
 
 <template>
   <h1>Contact Us</h1>
-  <form action="">
-    <div>
-      <label for="name">Name: </label>
-      <input type="text" name="name" id="name" v-model="contact.name" />
-    </div>
-    <div>
-      <label for="email">Email: </label>
-      <input type="email" name="email" id="email" v-model="contact.email" />
-    </div>
-    <div>
-      <label for="age">Age: </label>
-      <input type="number" name="age" id="age" v-model.number="contact.age" />
-    </div>
-    <div>
-      <label for="type">Type: </label>
-      <select name="type" id="type" v-model="contact.type">
-        <option value="Regular">Regular</option>
-        <option value="VIP">VIP</option>
-      </select>
-    </div>
-    <div>
-      <label for="complain">Complain: </label>
-      <input
-        type="checkbox"
-        name="complain"
-        id="complain"
-        v-model="contact.complain"
-      />
-    </div>
-    <div>
-      <label for="message">Message: </label>
-      <textarea
-        name="message"
-        id="message"
-        v-model="contact.message"
-      ></textarea>
-    </div>
-  </form>
+  <ContactForm v-model="contact" />
 
-  <h1>Preview</h1>
-  <div>
-    <p>Name: {{ contact.name }}</p>
-    <p>Email: {{ contact.email }}</p>
-    <p>Age: {{ contact.age }}</p>
-    <p>Type: {{ contact.type }}</p>
-    <p>Complain: {{ contact.complain }}</p>
-    <p>Message: {{ contact.message }}</p>
-  </div>
+  <!-- sebutin argumennya, !! sebenarnya ini contoh tidak ideal karena bisa dijadiin satu model dan pindahin ke props aja !!-->
+  <!-- menambah modifier uppercase di email -->
+  <ContactList
+    v-model:name="contact.name"
+    v-model:email.uppercase="contact.email"
+    v-model:age="contact.age"
+    v-model:type="contact.type"
+    v-model:complain="contact.complain"
+    v-model:message="contact.message"
+  />
 </template>
 
 <style scoped></style>
