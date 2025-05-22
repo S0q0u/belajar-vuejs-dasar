@@ -18,6 +18,8 @@ export default defineConfig({
         product: 'product.html',
         note: 'note.html',
         todolist2: 'todolist2.html',
+        button: 'button.html',
+        home: 'home.html',
       },
     },
   },
