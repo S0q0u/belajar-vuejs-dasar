@@ -20,6 +20,7 @@ export default defineConfig({
         todolist2: 'todolist2.html',
         button: 'button.html',
         home: 'home.html',
+        profile: 'profile.html',
       },
     },
   },
