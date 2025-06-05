@@ -6,14 +6,15 @@ const { name, counter, increment } = defineProps({
   increment: Number,
 });
 
-// define emits untuk mengirim event
-const emits = defineEmits(['click']);
+defineOptions({
+  inheritAttrs: false, // supaya atribut click tidak diteruskan ke elemen div
+});
 </script>
 
 <template>
+  <!-- single element, biar tidak terjadi event propagation (karena semua yang dikirim dari multiplecounter diteruskan ke semua elemen atau fallthrough, jadi event click ada di div juga)-->
   <div>
     <h1>Counter {{ name }}: {{ counter }}</h1>
-    <!-- increment itu event parameter yang dikirim -->
-    <button @click="emits('click', increment)">Increment {{ name }}</button>
+    <button @click="$emits('click', increment)">Increment {{ name }}</button>
   </div>
 </template>
